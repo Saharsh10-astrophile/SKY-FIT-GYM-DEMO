@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SKY FIT ZONE | Gym in Divancheruvu</title>
+<meta name="description" content="SKY FIT ZONE gym beside SBI Bank, Divancheruvu. Rated 4.7 on Google. Open Monday to Saturday.">
+<style>
+  :root{
+    --bg:#0b0f17; --alt:#101622; --card:#161e2e; --line:#263149;
+    --text:#f2f5fa; --muted:#a3aec2; --accent:#38bdf8; --accent2:#a3e635;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1100px,100% - 32px);margin:auto}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(11,15,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .logo{font-weight:900;font-size:1.3rem;letter-spacing:1px}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:28px}
+  nav a{color:var(--muted);font-weight:600}
+  nav a:hover{color:var(--accent)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;font-size:1.3rem;width:44px;height:40px;cursor:pointer}
+
+  .hero{padding:80px 0 70px;text-align:center;background:
+    radial-gradient(circle at 15% 10%,rgba(56,189,248,.22),transparent 45%),
+    radial-gradient(circle at 85% 90%,rgba(163,230,53,.14),transparent 45%)}
+  .status{display:inline-block;padding:6px 16px;border:1px solid var(--line);border-radius:50px;background:var(--card);font-size:.9rem;font-weight:600;margin-bottom:22px}
+  .status.open{color:var(--accent2);border-color:var(--accent2)}
+  .status.closed{color:#fca5a5;border-color:#7f1d1d}
+  h1{font-size:clamp(2.6rem,10vw,5.5rem);line-height:1.05;font-weight:900;text-transform:uppercase}
+  h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);max-width:560px;margin:18px auto 26px;font-size:1.1rem}
+  .rating{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+  .rating strong{font-size:1.8rem}
+  .stars{position:relative;display:inline-block;font-size:1.5rem;color:#475569;letter-spacing:2px;white-space:nowrap}
+  .stars::before{content:"★★★★★"}
+  .stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:94%;overflow:hidden;color:#fbbf24}
+  .btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:13px 28px;border-radius:50px;font-weight:700;border:2px solid var(--accent);transition:transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--accent);color:#06121c}
+
+  section{padding:70px 0;scroll-margin-top:50px}
+  section.alt{background:var(--alt)}
+  h2{font-size:clamp(1.8rem,5vw,2.4rem);text-align:center;margin-bottom:8px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:36px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:border-color .2s,transform .2s}
+  .service:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .icon{font-size:2rem;margin-bottom:10px}
+  .card h3{margin-bottom:6px}
+  .card p{color:var(--muted)}
+
+  .review{border-style:dashed}
+  .tag{display:inline-block;font-size:.75rem;font-weight:700;text-transform:uppercase;color:#fbbf24;border:1px solid #fbbf24;border-radius:6px;padding:2px 8px;margin-bottom:12px}
+  .center{text-align:center;margin-top:28px}
+
+  .hours{list-style:none}
+  .hours li{display:flex;justify-content:space-between;gap:12px;padding:12px 10px;border-bottom:1px solid var(--line)}
+  .hours li span:last-child{text-align:right;color:var(--muted)}
+  .hours li.today{background:rgba(56,189,248,.12);border-radius:8px}
+  .peak{margin-top:18px}
+  .peak div{padding:12px 14px;border-radius:10px;background:var(--alt);margin-top:10px}
+
+  address{font-style:normal;color:var(--muted);margin:8px 0 18px}
+  iframe{width:100%;height:260px;border:0;border-radius:12px;margin-bottom:18px;background:var(--alt)}
+  .card .btns{justify-content:flex-start}
+
+  footer{text-align:center;padding:36px 16px 110px;color:var(--muted);border-top:1px solid var(--line);font-size:.9rem}
+
+  .whatsapp{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30;display:flex;align-items:center;gap:8px;background:#25d366;color:#052e16;font-weight:800;padding:14px 20px;border-radius:50px;box-shadow:0 8px 24px rgba(37,211,102,.45);animation:pulse 2.2s infinite}
+  .whatsapp svg{width:26px;height:26px;fill:currentColor}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+  @media (max-width:720px){
+    .menu-btn{display:block}
+    nav{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+    nav.show{display:flex}
+    nav a{padding:14px 20px;border-top:1px solid var(--line)}
+    .hero{padding:56px 0}
+    section{padding:54px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .whatsapp{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="logo">SKY <span>FIT</span> ZONE</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="menu">
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#timings">Timings</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero" id="home">
+    <div class="wrap">
+      <div class="status" id="status">Open Monday to Saturday</div>
+      <h1>Sky <span>Fit</span> Zone</h1>
+      <p>Train stronger, feel fitter. Your neighbourhood gym beside SBI Bank in Divancheruvu.</p>
+      <div class="rating" aria-label="Google rating 4.7 out of 5 from 72 reviews">
+        <strong>4.7</strong>
+        <span class="stars" aria-hidden="true"></span>
+        <span>72 Google reviews</span>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="tel:+918886755526">📞 Call 088867 55526</a>
+        <a class="btn" href="#contact">📍 Find Us</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="alt" id="services">
+    <div class="wrap">
+      <h2>Our Services</h2>
+      <p class="sub">Sample service list. Please contact the gym to confirm availability.</p>
+      <div class="grid">
+        <article class="card service"><div class="icon">🏋️</div><h3>Strength Training</h3><p>Build muscle and power with focused weight training.</p></article>
+        <article class="card service"><div class="icon">🏃</div><h3>Cardio Fitness</h3><p>Improve stamina and heart health with energising cardio.</p></article>
+        <article class="card service"><div class="icon">🔥</div><h3>Weight Management</h3><p>Workout routines designed around your fitness goals.</p></article>
+        <article class="card service"><div class="icon">🎯</div><h3>Personal Guidance</h3><p>Support with exercise form, technique and progress.</p></article>
+        <article class="card service"><div class="icon">🤸</div><h3>Functional Training</h3><p>Improve everyday strength, balance and mobility.</p></article>
+        <article class="card service"><div class="icon">🌱</div><h3>Beginner Programs</h3><p>A comfortable, step-by-step start to your fitness journey.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <h2>Customer Reviews</h2>
+      <p class="sub">★ 4.7 out of 5, based on 72 Google reviews</p>
+      <div class="grid">
+        <!-- REVIEW 1: Replace with a real review (exact words and name, with permission). Then remove the "tag" line. -->
+        <article class="card review">
+          <span class="tag">Placeholder</span>
+          <p>Space for a real customer review. Add the reviewer's own words here.</p>
+          <h3 style="margin-top:14px">Customer name</h3>
+        </article>
+        <!-- REVIEW 2: Replace with a real review (exact words and name, with permission). Then remove the "tag" line. -->
+        <article class="card review">
+          <span class="tag">Placeholder</span>
+          <p>Space for a second real customer review. Add the reviewer's own words here.</p>
+          <h3 style="margin-top:14px">Customer name</h3>
+        </article>
+      </div>
+      <div class="center">
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SKY+FIT+ZONE+Divancheruvu+533353">See Reviews on Google</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="timings">
+    <div class="wrap">
+      <h2>Gym Timings</h2>
+      <p class="sub">Morning and evening sessions, six days a week</p>
+      <div class="grid">
+        <div class="card">
+          <ul class="hours">
+            <li data-day="1"><span>Monday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="2"><span>Tuesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="3"><span>Wednesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="4"><span>Thursday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="5"><span>Friday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="6"><span>Saturday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+            <li data-day="0"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Plan Your Visit</h3>
+          <p>Pick the session that suits your style.</p>
+          <div class="peak">
+            <div>🌅 <strong>Mornings</strong><p>Tend to be quieter. Great for a relaxed workout.</p></div>
+            <div>🌆 <strong>Evenings</strong><p>Typically the busiest time, Monday to Saturday.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Visit Us</h2>
+      <p class="sub">Right beside SBI Bank</p>
+      <div class="grid">
+        <div class="card">
+          <h3>📍 Address</h3>
+          <address>2RVR+VMW, Road, beside SBI bank,<br>Divancheruvu, Palacherla,<br>Andhra Pradesh 533353</address>
+          <h3>📞 Phone</h3>
+          <p style="margin-bottom:20px"><a href="tel:+918886755526">088867 55526</a></p>
+          <div class="btns">
+            <a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=2RVR%2BVMW%2C%20Divancheruvu%2C%20Andhra%20Pradesh%20533353">Get Directions</a>
+            <a class="btn" href="tel:+918886755526">Call Now</a>
+          </div>
+        </div>
+        <div class="card">
+          <iframe title="Map showing SKY FIT ZONE location" loading="lazy" src="https://www.google.com/maps?q=2RVR%2BVMW%2C%20Divancheruvu%2C%20Andhra%20Pradesh%20533353&output=embed"></iframe>
+          <p>Landmark: beside SBI Bank, Divancheruvu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>SKY FIT ZONE</strong></p>
+  <p>Divancheruvu, Andhra Pradesh · 088867 55526</p>
+  <p>© <span id="year">2026</span> Sample website</p>
+</footer>
+
+<!-- Confirm that this number is active on WhatsApp -->
+<a class="whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   href="https://wa.me/918886755526?text=Hi%20SKY%20FIT%20ZONE%2C%20I%20would%20like%20to%20know%20about%20gym%20membership.">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.2 1 4.2 2.6 5.700L3.500 21.500l5-2c1.100.3 2.300.5 3.500.5 5.500 0 10-3.800 10-8.500S17.500 3 12 3z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+  // Mobile menu
+  const menu = document.getElementById("menu");
+  const menuBtn = document.getElementById("menuBtn");
+
+  function setMenu(open) {
+    menu.classList.toggle("show", open);
+    menuBtn.setAttribute("aria-expanded", open);
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menuBtn.textContent = open ? "✕" : "☰";
+  }
+  menuBtn.addEventListener("click", () => setMenu(!menu.classList.contains("show")));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+  // Live open/closed status in India time
+  function updateStatus() {
+    const parts = Object.fromEntries(
+      new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata", weekday: "short",
+        hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+      }).formatToParts(new Date()).map(p => [p.type, p.value])
+    );
+    const day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(parts.weekday);
+    const now = Number(parts.hour) * 60 + Number(parts.minute);
+    const slots = [
+      { start: 360,  end: 570,  opens: "6:00 AM", closes: "9:30 AM" },
+      { start: 1020, end: 1260, opens: "5:00 PM", closes: "9:00 PM" }
+    ];
+    const current = day !== 0 && slots.find(s => now >= s.start && now < s.end);
+    const next = day !== 0 && slots.find(s => now < s.start);
+    const badge = document.getElementById("status");
+
+    if (current) {
+      badge.textContent = "● Open now · Closes " + current.closes;
+    } else if (next) {
+      badge.textContent = "● Closed now · Opens today " + next.opens;
+    } else {
+      badge.textContent = "● Closed now · Opens " + (day === 6 ? "Monday" : "tomorrow") + " 6:00 AM";
+    }
+    badge.className = "status " + (current ? "open" : "closed");
+
+    document.querySelectorAll(".hours li").forEach(li =>
+      li.classList.toggle("today", Number(li.dataset.day) === day)
+    );
+  }
+  updateStatus();
+  setInterval(updateStatus, 60000);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
