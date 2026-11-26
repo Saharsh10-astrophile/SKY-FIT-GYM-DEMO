@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -271,11 +271,4 @@
     document.querySelectorAll(".hours li").forEach(li =>
       li.classList.toggle("today", Number(li.dataset.day) === day)
     );
-  }
-  updateStatus();
-  setInterval(updateStatus, 60000);
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+ 
