@@ -19,10 +19,11 @@
     --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
   html{scroll-behavior:smooth}
   body{font-family:var(--sans);font-weight:300;background:var(--ink);color:var(--ivory);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  a:focus-visible,button:focus-visible{outline:2px solid #b89355;outline-offset:3px}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #b89355;outline-offset:3px}
   .wrap{width:min(1160px,100% - 40px);margin:auto}
   h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08}
   h1 em,h2 em{font-weight:500;color:var(--champagne)}
@@ -39,7 +40,8 @@
   .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--champagne);width:44px;height:44px;font-size:1.2rem;cursor:pointer}
 
   .btns{display:flex;flex-wrap:wrap;gap:14px}
-  .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 32px;border:1px solid var(--champagne);font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;transition:transform .3s,background .3s,color .3s}
+  .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 32px;border:1px solid var(--champagne);font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;text-align:center;transition:transform .3s,background .3s,color .3s}
+  button.btn{background:none;color:inherit;font-family:inherit;cursor:pointer}
   .btn:hover{transform:translateY(-2px);background:var(--champagne);color:var(--ink)}
   .btn.solid{background:var(--metal);border-color:transparent;color:var(--ink)}
   .btn.solid::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:35%;background:rgba(255,255,255,.55);transform:skewX(-22deg);transition:left .6s}
@@ -91,6 +93,31 @@
   .service:hover i{color:var(--champagne)}
   .service:hover p{color:var(--muted)}
 
+  /* Membership catalogue */
+  .plans{background:var(--emerald)}
+  .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .plan{display:flex;flex-direction:column;text-align:center;padding:40px 22px;border:1px solid var(--line);background:var(--ink);transition:transform .3s,border-color .3s}
+  .plan:hover{transform:translateY(-6px);border-color:var(--champagne)}
+  .plan h3{font-size:2rem;margin:12px 0}
+  .plan b{font-family:var(--serif);font-weight:600;font-size:3rem;line-height:1.2;color:var(--champagne)}
+  .plan small{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .plan p{font-size:.92rem;color:var(--muted);margin:14px 0 26px;flex:1}
+  .plan .btn{width:100%;padding:0 12px}
+
+  /* Payment popup */
+  dialog{margin:auto;width:min(440px,100% - 28px);max-height:90vh;overflow:auto;padding:34px 24px;border:1px solid var(--champagne);background:var(--emerald);color:var(--ivory);text-align:center}
+  dialog::backdrop{background:rgba(0,0,0,.8)}
+  dialog h3{font-size:2.1rem;margin:8px 0}
+  .amount{display:block;font-family:var(--serif);font-size:3.2rem;line-height:1.2;color:var(--champagne);margin-bottom:18px}
+  .close{position:absolute;top:10px;right:14px;background:none;border:0;color:var(--champagne);font-size:1.8rem;cursor:pointer}
+  dialog .btn{width:100%;margin-top:14px;padding:8px 14px}
+  #qr{width:224px;min-height:224px;margin:20px auto 12px;padding:12px;background:#fff}
+  #qr img,#qr canvas{max-width:100%}
+  #qr p{color:#04110d;font-size:.85rem;padding-top:70px}
+  .upi{font-size:.9rem;overflow-wrap:anywhere}
+  dialog input{width:100%;margin-top:14px;padding:14px;border:1px solid var(--line);background:var(--ink);color:var(--ivory);font:inherit;font-size:1rem}
+  .note{font-size:.8rem;color:var(--muted);margin-top:16px}
+
   .reviews{background:radial-gradient(ellipse at 50% 0,#164333,transparent 60%),var(--ink)}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:26px}
   .review{border:1px solid var(--line);padding:46px 38px;text-align:center;background:rgba(255,255,255,.025)}
@@ -107,7 +134,6 @@
   .hours li:last-child{border:0}
   .hours li span:first-child{font-weight:500}
   .hours li span:last-child{text-align:right;font-size:.92rem}
-  .hours li.today{background:var(--emerald);color:var(--champagne)}
 
   .contact{background:var(--ink)}
   .panel{display:grid;grid-template-columns:1fr 1.15fr;border:1px solid var(--line)}
@@ -127,12 +153,17 @@
   .js .reveal{opacity:0;translate:0 34px;transition:opacity .9s,translate .9s}
   .js .reveal.in{opacity:1;translate:0 0}
 
+  @media (min-width:721px) and (max-width:960px){
+    nav{gap:16px}
+    nav a{letter-spacing:.12em}
+    .logo{font-size:1.1rem;letter-spacing:.1em}
+  }
   @media (max-width:900px){
     .hero-grid,.panel{grid-template-columns:1fr}
     .hero-grid{text-align:center}
     .lead{margin-inline:auto}
     .hero .btns{justify-content:center}
-    .services{grid-template-columns:1fr 1fr}
+    .services,.plan-grid{grid-template-columns:1fr 1fr}
     iframe{height:340px;min-height:340px}
   }
   @media (max-width:720px){
@@ -141,7 +172,7 @@
     nav.show{display:flex}
     nav a{padding:18px 24px;border-top:1px solid var(--line);text-align:center}
     section{padding:80px 0}
-    .services,.two,.facts .wrap{grid-template-columns:1fr}
+    .services,.plan-grid,.two,.facts .wrap{grid-template-columns:1fr}
     .fact{padding:22px 12px}
     .fact+.fact{border-left:0;border-top:1px solid var(--line)}
     .service{padding:34px 26px}
@@ -164,6 +195,7 @@
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="menu">
       <a href="#services">Services</a>
+      <a href="#plans">Plans</a>
       <a href="#reviews">Reviews</a>
       <a href="#timings">Timings</a>
       <a href="#contact">Contact</a>
@@ -231,6 +263,17 @@
     </div>
   </section>
 
+  <section class="plans" id="plans">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Membership Catalogue</span>
+        <h2>Choose your <em>membership</em></h2>
+        <p id="planNote">Sample prices shown. Please confirm with the gym.</p>
+      </div>
+      <div class="plan-grid reveal" id="planGrid"></div>
+    </div>
+  </section>
+
   <section class="reviews" id="reviews">
     <div class="wrap">
       <div class="head reveal">
@@ -270,13 +313,13 @@
         <div class="session reveal"><span class="kicker">Evening Session</span><b>5:00 – 9:00 PM</b><p>Typically the busiest, with a lively atmosphere.</p></div>
       </div>
       <ul class="hours reveal">
-        <li data-day="1"><span>Monday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="2"><span>Tuesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="3"><span>Wednesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="4"><span>Thursday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="5"><span>Friday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="6"><span>Saturday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
-        <li data-day="0"><span>Sunday</span><span>Closed</span></li>
+        <li><span>Monday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Tuesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Wednesday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Thursday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Friday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Saturday</span><span>6:00 – 9:30 AM<br>5:00 – 9:00 PM</span></li>
+        <li><span>Sunday</span><span>Closed</span></li>
       </ul>
     </div>
   </section>
@@ -311,6 +354,27 @@
   <p>© <span id="year">2026</span> Sample website</p>
 </footer>
 
+<dialog id="payBox" aria-labelledby="payTitle">
+  <button type="button" class="close" id="payClose" aria-label="Close">×</button>
+  <span class="kicker">UPI Payment</span>
+  <h3 id="payTitle"></h3>
+  <span class="amount" id="payAmount"></span>
+
+  <p id="payOff">Online payment is not activated yet. Please call <a href="tel:+918886755526">088867 55526</a>.</p>
+
+  <div id="payOn" hidden>
+    <a class="btn solid" id="upiLink">Pay with UPI App</a>
+    <p class="note">Or scan this QR code using any UPI app</p>
+    <div id="qr"></div>
+    <p class="upi">UPI ID: <strong id="upiText"></strong></p>
+    <button type="button" class="btn" id="copyBtn">Copy UPI ID</button>
+    <input id="custName" type="text" placeholder="Your name" aria-label="Your name" autocomplete="name">
+    <input id="txnId" type="text" placeholder="UPI transaction ID (UTR)" aria-label="UPI transaction ID">
+    <a class="btn" id="proofLink" target="_blank" rel="noopener">Send Proof on WhatsApp</a>
+    <p class="note">Check the payee name before paying. Membership is confirmed only after the gym verifies the payment.</p>
+  </div>
+</dialog>
+
 <!-- Confirm that this number is active on WhatsApp -->
 <a class="whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
    href="https://wa.me/918886755526?text=Hi%20SKY%20FIT%20ZONE%2C%20I%20would%20like%20to%20know%20about%20gym%20membership.">
@@ -320,7 +384,24 @@
   </svg>
 </a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+  // ========= EDIT PAYMENT DETAILS HERE =========
+  const PAYMENT = {
+    upiId: "",                  // Paste the gym's business UPI ID between the quotes
+    payeeName: "SKY FIT ZONE",
+    live: false                 // Change to true after adding the UPI ID and real prices
+  };
+
+  // Sample prices: replace with the gym's real prices
+  const PLANS = [
+    { name: "Monthly",     period: "1 Month",   price: 1000, note: "A flexible start to your fitness journey." },
+    { name: "Quarterly",   period: "3 Months",  price: 2700, note: "Build a consistent training habit." },
+    { name: "Half-Yearly", period: "6 Months",  price: 5000, note: "Commit to steady, visible progress." },
+    { name: "Annual",      period: "12 Months", price: 9000, note: "A full year dedicated to your strength." }
+  ];
+  // =============================================
+
   document.documentElement.classList.add("js");
 
   const header = document.getElementById("header");
@@ -339,6 +420,78 @@
   }
   menuBtn.addEventListener("click", () => setMenu(!menu.classList.contains("show")));
   menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+  // Catalogue and UPI payment
+  const el = id => document.getElementById(id);
+  const upiId = PAYMENT.upiId.trim();
+  const isLive = PAYMENT.live && /^[\w.\-]+@[\w.\-]+$/.test(upiId);
+  const money = n => "₹" + n.toLocaleString("en-IN");
+  let selected;
+
+  if (isLive) el("planNote").textContent = "Select a plan and pay with your UPI app.";
+
+  PLANS.forEach(plan => {
+    const card = document.createElement("article");
+    card.className = "plan";
+    card.innerHTML = `
+      <span class="kicker">${plan.period}</span>
+      <h3>${plan.name}</h3>
+      <b>${money(plan.price)}</b>
+      ${isLive ? "" : "<small>Sample price</small>"}
+      <p>${plan.note}</p>
+      <button type="button" class="btn">Pay with UPI</button>`;
+    card.querySelector("button").addEventListener("click", () => openPay(plan));
+    el("planGrid").appendChild(card);
+  });
+
+  function updateProof() {
+    const message = `Hi SKY FIT ZONE, I am sending payment proof.
+Plan: ${selected.name}
+Amount: ${money(selected.price)}
+Name: ${el("custName").value.trim()}
+UPI Transaction ID: ${el("txnId").value.trim()}
+I will attach the payment screenshot.`;
+    el("proofLink").href = "https://wa.me/918886755526?text=" + encodeURIComponent(message);
+  }
+
+  function openPay(plan) {
+    selected = plan;
+    el("payTitle").textContent = plan.name + " Membership";
+    el("payAmount").textContent = money(plan.price);
+    el("payOn").hidden = !isLive;
+    el("payOff").hidden = isLive;
+
+    if (isLive) {
+      const link = "upi://pay?pa=" + upiId +
+        "&pn=" + encodeURIComponent(PAYMENT.payeeName) +
+        "&am=" + plan.price.toFixed(2) +
+        "&cu=INR&tn=" + encodeURIComponent(plan.name + " Membership");
+      el("upiLink").href = link;
+      el("upiText").textContent = upiId;
+      el("copyBtn").textContent = "Copy UPI ID";
+      el("txnId").value = "";
+      el("qr").innerHTML = "";
+      if (window.QRCode) {
+        new QRCode(el("qr"), { text: link, width: 200, height: 200, correctLevel: QRCode.CorrectLevel.M });
+      } else {
+        el("qr").innerHTML = "<p>QR unavailable. Use the UPI ID below.</p>";
+      }
+      updateProof();
+    }
+    el("payBox").showModal();
+  }
+
+  el("payClose").addEventListener("click", () => el("payBox").close());
+  el("custName").addEventListener("input", updateProof);
+  el("txnId").addEventListener("input", updateProof);
+  el("copyBtn").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(upiId);
+      el("copyBtn").textContent = "Copied";
+    } catch (e) {
+      el("copyBtn").textContent = "Press and hold the ID to copy";
+    }
+  });
 
   const items = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
@@ -371,7 +524,7 @@
     ];
     const current = day !== 0 && slots.find(s => now >= s.start && now < s.end);
     const next = day !== 0 && slots.find(s => now < s.start);
-    const badge = document.getElementById("status");
+    const badge = el("status");
 
     if (current) {
       badge.textContent = "Open now · Closes " + current.closes;
@@ -381,16 +534,13 @@
       badge.textContent = "Closed now · Opens " + (day === 6 ? "Monday" : "tomorrow") + " 6:00 AM";
     }
     badge.className = "status " + (current ? "open" : "closed");
-
-    document.querySelectorAll(".hours li").forEach(li =>
-      li.classList.toggle("today", Number(li.dataset.day) === day)
-    );
   }
   updateStatus();
   setInterval(updateStatus, 60000);
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  el("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
+
  
